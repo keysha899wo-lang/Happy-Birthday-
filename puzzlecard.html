@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Matching Game - Tema Lucu</title>
+    <style>
+        body { 
+            font-family: 'Comic Sans MS', cursive, sans-serif; 
+            text-align: center; 
+            background: linear-gradient(45deg, #ff9a9e, #fecfef, #a8edea, #fed6e3); 
+            background-size: 400% 400%; 
+            animation: gradientShift 5s ease infinite; 
+            margin: 0; 
+            padding: 10px; 
+        }
+        @keyframes gradientShift { 
+            0% { background-position: 0% 50%; } 
+            50% { background-position: 100% 50%; } 
+            100% { background-position: 0% 50%; } 
+        }
+        h1 { color: #ff6b6b; text-shadow: 2px 2px #fff; font-size: 2rem; margin: 10px 0; }
+        .game-board { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); 
+            gap: 10px; 
+            justify-content: center; 
+            margin: 20px auto; 
+            max-width: 400px; 
+        }
+        .card { 
+            width: 100%; 
+            height: 80px; 
+            background-color: #f39c12; 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 2rem; 
+            cursor: pointer; 
+            border-radius: 10px; 
+            transition: transform 0.3s ease, background-color 0.3s; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+        }
+        .card:hover { transform: scale(1.05); }
+        .card.flipped { 
+            background-color: #e74c3c; 
+            transform: rotateY(180deg) scale(1.1); 
+        }
+        .card.matched { 
+            background-color: #2ecc71; 
+            pointer-events: none; 
+            animation: bounce 0.5s; 
+        }
+        @keyframes bounce { 
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 
+            40% { transform: translateY(-10px); } 
+            60% { transform: translateY(-5px); } 
+        }
+        #message { 
+            margin-top: 20px; 
+            font-size: 1.2rem; 
+            color: #333; 
+            background: rgba(255,255,255,0.8); 
+            padding: 10px; 
+            border-radius: 10px; 
+            max-width: 90%; 
+            margin-left: auto; 
+            margin-right: auto; 
+        }
+        #reset { 
+            margin-top: 10px; 
+            padding: 10px 20px; 
+            background-color: #3498db; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            font-size: 1rem; 
+        }
+        #reset:hover { background-color: #2980b9; }
+    </style>
+</head>
+<body>
+    <a href="animationword.html"><h1>Puzzle Card!!</h1></a>
+    <div class="game-board" id="game-board"></div>
+    <div id="message"></div>
+    <button id="reset">Roll It!</button>
+
+    <script>
+        const board = document.getElementById('game-board');
+        const message = document.getElementById('message');
+        const resetBtn = document.getElementById('reset');
+        const dailyNotes = [
+            "Happy Birthday BB",
+            "Try To Click the PuzzleCard Word Okay??"
+        ];
+
+        let cards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        const totalPairs = 8; // 16 kartu, 8 pasangan
+
+        function createBoard() {
+            const symbols = ['😄', '🐶', '🍕', '🐱', '🐰', '🍫', '🍦', '😆'];
+            const deck = [...symbols, ...symbols]; // Duplikasi untuk pasangan
+            deck.sort(() => Math.random() - 0.5); // Acak
+
+            board.innerHTML = '';
+            cards = [];
+            flippedCards = [];
+            matchedPairs = 0;
+            message.textContent = '';
+
+            deck.forEach((symbol, index) => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.dataset.symbol = symbol;
+                card.addEventListener('click', flipCard);
+                board.appendChild(card);
+                cards.push(card);
+            });
+        }
+
+        function flipCard() {
+            if (flippedCards.length < 2 && !this.classList.contains('flipped') && !this.classList.contains('matched')) {
+                this.classList.add('flipped');
+                this.textContent = this.dataset.symbol;
+                flippedCards.push(this);
+
+                if (flippedCards.length === 2) {
+                    setTimeout(checkMatch, 1000);
+                }
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            if (card1.dataset.symbol === card2.dataset.symbol) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+                if (matchedPairs === totalPairs) {
+                    const randomNote = dailyNotes[Math.floor(Math.random() * dailyNotes.length)];
+                    message.textContent = `Good Job Babyy!! ${randomNote}`;
+                }
+            } else {
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+                card1.textContent = '';
+                card2.textContent = '';
+            }
+            flippedCards = [];
+        }
+
+        resetBtn.addEventListener('click', createBoard);
+        createBoard(); // Inisialisasi game
+    </script>
+</body>
+</html>

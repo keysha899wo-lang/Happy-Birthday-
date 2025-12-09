@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://kit.fontawesome.com/c8f15ee2ab.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lil note</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: black;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px; /* Padding untuk layar kecil */
+        }
+        .text-container {
+            font-size: 3em; /* Ukuran default untuk desktop */
+            color: white;
+            text-align: center; /* Pusatkan teks */
+        }
+        .letter {
+            display: inline-block;
+            animation: glow 2s infinite ease-in-out;
+        }
+        button{
+            margin-top: 8px;
+        }
+        /* Animasi glowing */
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 5px #5f3cdd, 0 0 10px #5f3cdd, 0 0 15px #5f3cdd; }
+            50% { text-shadow: 0 0 10px #3125db, 0 0 20px #3125db, 0 0 30px #3125db; }
+        }
+
+        /* Media queries untuk responsivitas */
+        @media (max-width: 768px) { /* Tablet dan mobile */
+            .text-container {
+                font-size: 2em; /* Ukuran lebih kecil */
+            }
+            .letter {
+                animation-duration: 1.5s; /* Animasi lebih cepat untuk layar kecil */
+            }
+        }
+        @media (max-width: 480px) { /* Mobile kecil */
+            .text-container {
+                font-size: 1.5em; /* Lebih kecil lagi */
+                line-height: 1.2; /* Jarak baris untuk readability */
+            }
+            .letter {
+                animation-duration: 1s; /* Lebih cepat */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="text-container" id="text">Happy Birthday Manni</div>
+    </div>
+    <a href="flower2.html">❤️</a>
+    <script>
+        // Fungsi untuk membungkus setiap huruf dalam span dengan kelas 'letter'
+        function wrapLetters() {
+            const textElement = document.getElementById('text');
+            const text = textElement.textContent;
+            textElement.innerHTML = text.split('').map(letter => 
+                letter === ' ' ? ' ' : `<span class="letter">${letter}</span>`
+            ).join('');
+            
+            // Tambahkan delay animasi untuk setiap huruf
+            const letters = document.querySelectorAll('.letter');
+            letters.forEach((letter, index) => {
+                letter.style.animationDelay = `${index * 0.1}s`; // Delay 0.1s per huruf
+            });
+        }
+        
+        // Jalankan saat halaman dimuat
+        window.onload = wrapLetters;
+    </script>
+</body>
+</html>

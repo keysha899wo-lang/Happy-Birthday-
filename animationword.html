@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif; /* Font lucu */
+            background: linear-gradient(to bottom, #d2b48c, #f5f5dc, #ffcccc); /* Gradien coklat, krem, dan merah muda */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Untuk animasi jatuh */
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            text-align: center;
+        }
+        h2 {
+            color: #8b4513; /* Coklat gelap */
+            font-size: 24px;
+        }
+        #surat {
+            font-size: 15px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            color: #333;
+        }
+        /* Gambar beruang lucu sederhana */
+        .beruang {
+            width: 50px;
+            height: 50px;
+            background-color: #8b4513; /* Badan coklat */
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto 10px;
+        }
+        .beruang::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            width: 20px;
+            height: 20px;
+            background-color: #8b4513;
+            border-radius: 50%; /* Kepala */
+        }
+        .beruang::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 10px;
+            width: 30px;
+            height: 15px;
+            background-color: #8b4513;
+            border-radius: 50%; /* Kaki */
+        }
+        /* Animasi jatuh: beruang dan mawar */
+        .jatuh {
+            position: absolute;
+            font-size: 30px;
+            animation: jatuh 6s linear infinite;
+            opacity: 0.8;
+        }
+        .jatuh:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .jatuh:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .jatuh:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .jatuh:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .jatuh:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .jatuh:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .jatuh:nth-child(7) { left: 70%; animation-delay: 6s; }
+        .jatuh:nth-child(8) { left: 80%; animation-delay: 7s; }
+        .jatuh:nth-child(9) { left: 90%; animation-delay: 8s; }
+        @keyframes jatuh {
+            0% { top: -50px; transform: rotate(0deg); }
+            100% { top: 100vh; transform: rotate(360deg); }
+        }
+        /* Responsif untuk HP */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            #surat {
+                font-size: 16px;
+            }
+            .beruang {
+                width: 40px;
+                height: 40px;
+            }
+            .jatuh {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Beruang dan mawar jatuh sebagai dekorasi -->
+    <div class="jatuh">🐻</div>
+    <div class="jatuh">🌹</div>
+    <div class="jatuh">🐻</div>
+    <div class="jatuh">🌹</div>
+    <div class="jatuh">🐻</div>
+    <div class="jatuh">🌹</div>
+    <div class="jatuh">🐻</div>
+    <div class="jatuh">🌹</div>
+    <div class="jatuh">🌹</div>
+
+    <div class="container">
+        <a href="word.html"><div class="beruang"></div> <!-- Gambar beruang lucu --></a>
+        <h2>🌹 Happy Birthday cupcake 🎂</h2>
+        <div id="surat"></div>
+    </div>
+
+    <audio autoplay>
+        <source src="song/guitar (mp3cut.net) (1).mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        const teksSurat = `hello Manni❤️
+happy birthday for...(wait idk yet your real age,sorrryy)
+
+Happy Birthday BB,Thankss for always keep trying for everyday lil cupcake
+i was always feeling big big pround for anything and everything what you do,until it shaped you into the person who you are 
+
+always keep being be yourself okay?
+be the one that really really different from the others and always care about anyone
+and don't let them changeit,unless if you want really really to change it,okay?
+
+keep always take a step for your life okay?
+either it's small or a big step,always put a trust on it okay?
+
+Thanks for anything and everything
+and Thanks for everyone that always keep being be with you to protect and guide you
+I love You and It Is Just Only You,lil cupcake
+
+sorrryy can't writting to muchhh
+I Love You BB❤️
+`;
+
+        const elemenSurat = document.getElementById('surat');
+        let index = 0;
+
+        function ketikTeks() {
+            if (index < teksSurat.length) {
+                elemenSurat.textContent += teksSurat.charAt(index);
+                index++;
+                setTimeout(ketikTeks, 65); // Kecepatan ketikan
+            }
+        }
+
+        // Mulai animasi saat halaman dimuat
+        window.onload = ketikTeks;
+    </script>
+</body>
+</html>

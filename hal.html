@@ -1,0 +1,413 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>music</title>
+    <link rel="stylesheet" href="halamn.css">
+    <script src="https://kit.fontawesome.com/c8f15ee2ab.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Story+Script&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- <div class="wrapperall"> -->
+        
+        <div class="wrapper">
+            <div class="top-bar">
+                <a href="index.html">
+                    <i class="material-symbols-outlined">chevron_left</i>
+                </a>
+                <span class="fa-solid fa-music"></span>
+                =￣ω￣=
+            </div>
+            <div class="img-area">
+                <img src="" alt="">
+            </div>
+            <div class="song-details" >
+                <p class="name" id="the-girl-next-door-regular"></p>
+            </div>
+            <div class="progress-area">
+                <div class="progress-bar"></div>
+                <div class="timer">
+                    <span class="current">0:00</span>
+                    <span class="duration">3:19</span>
+                </div>
+                <audio id="music-audio" src=""></audio>
+            </div>
+            <div class="controls">
+                <i id="repeat-pls" class="material-symbols-outlined" title="playlist looped">repeat</i>
+                <i id="prev" class="material-symbols-outlined">skip_previous</i>
+                <div class="play-pause">
+                    <i class="material-symbols-outlined">play_arrow</i>
+                </div>
+                <i id="next" class="material-symbols-outlined">skip_next</i>
+                <a href="puzzlecard.html"><i id="more-music" class="material-symbols-outlined">kid_star</i></a>
+                
+            </div>
+            <div class="music-list">
+                <div class="header">
+                    <div class="row">
+                        <i class="material-symbols-outlined">queue_music</i>
+                        <span>  Music list</span>
+                    </div>
+                    <i id="close" class="material-symbols-outlined2">close</i>
+                </div>
+            </div>
+<script>
+    // list music
+    let allMusic = [
+    {
+        name:"Oxigeno",
+        artist:"Nightcore",
+        img:"foto/dene5",
+        src:"song/ytmp3free.cc_alvaro-soler-oxigeno-official-video-youtubemp3free.org",
+    },
+    {
+        name:"Para Vivirla",
+        artist:"Nightcore",
+        img: "foto/2325290_118",
+        src:"song/ytmp3free.cc_alvaro-soler-para-vivirla-official-live-video-youtubemp3free.org",
+    },
+    {
+        name:"Muero",
+        artist:"akie",
+        img:"foto/dene4",
+        src:"song/ytmp3free.cc_alvaro-soler-muero-official-video-youtubemp3free.org",
+    },
+    {
+        name:"Magia",
+        artist:"Nightcore",
+        img:"foto/edenjpg",
+        src:"song/ytmp3free.cc_alvaro-soler-magia-youtubemp3free.org",
+    },
+    {
+        name:"Desperiatos",
+        artist:"Nightcore",
+        img:"foto/in23",
+        src:"song/ytmp3free.cc_alvaro-soler-despiertos-official-music-video-youtubemp3free.org",
+    },
+    {
+        name:"Maana",
+        artist:"gawr gura",
+        img:"foto/kw",
+        src:"song/ytmp3free.cc_alvaro-soler-maana-youtubemp3free.org",
+    },
+    {
+        name:"Prover",
+        artist:"Akuma no ko",
+        img:"foto/2325290_111",
+        src:"song/「Prover-milet」見證者 絶対魔獣戦線バビロニア ED2 FGO巴比倫尼亞 ED2 (中日字幕)",
+    },
+    {
+        name:"バレンタインソング",
+        artist:"Nightcore",
+        img:"foto/SKY_20251001_2138238277728218934388043",
+        src:"song/平井 大 バレンタインソング（Lyric Video）",
+    },
+    {
+        name:"Buddy",
+        artist:"Nightcore",
+        img:"foto/2325290_275",
+        src:"song/ytmp3free.cc_buddylyric-video-youtubemp3free.org",
+    },
+    {
+        name:"Butter",
+        artist:"Nightcore",
+        img:"foto/2325290_76",
+        src:"song/ytmp3free.cc_bts-butter-lyrics-youtubemp3free.org",
+    },
+    {
+        name:"願いごと",
+        artist:"Nightcore",
+        img:"foto/SKY_20250930_2029468682573582930871461",
+        src:"song/ytmp3free.cc_lyric-video-youtubemp3free.org (1)",
+    },
+    {
+        name:"Life Goes On",
+        artist:"Nightcore",
+        img:"foto/dene8",
+        src:"song/ytmp3free.cc_life-goes-onlyric-video-youtubemp3free.org",
+    },
+    {
+        name:"I'll Be Your Side",
+        artist:"Nightcore",
+        img:"foto/map3'3",
+        src:"song/ytmp3free.cc_ill-be-by-your-sidelyric-video-youtubemp3free.org (1)",
+    },
+    {
+        name:"Here With Me",
+        artist:"Nightcore",
+        img:"foto/2325290_281",
+        src:"song/Marshmello, CHVRCHES - Here With Me (Lyrics)",
+    },
+    {
+        name:"Mashup",
+        artist:"Nightcore",
+        img:"foto/2325290_9",
+        src:"song/ytmp3free.cc_nightcore-abcdefu-heat-waves-light-switch-bad-days-mood-more-switching-vocalsmashup-youtubemp3free.org (1)",
+    },
+    
+    {
+        name:"ぎゅっと",
+        artist:"Nightcore",
+        img:"foto/3'9",
+        src:"song/ytmp3free.cc_music-video-youtubempgytto",
+    },
+    {
+        name:"Love You Still",
+        artist:"Nightcore",
+        img:"foto/2325290_275",
+        src:"song/ytmp3free.cc_nightcore-love-you-still-abcdefu-romantic-version-youtubemp3free.org",
+    },
+    {
+        name:"Close To You",
+        artist:"Nightcore",
+        img:"foto/in6",
+        src:"song/ytmp3free.cc_close-to-you-youtubemp3free.org",
+    },
+    {
+        name:"Lovely",
+        img:"foto/SKY_20251027_2248427541996066034776815",
+        src:"song/Nightcore - Lovely (Male Version) - Lyrics",
+    },
+    {
+        name:"If I Was Your Girlfriend",
+        img:"foto/2325290_245",
+        src:"song/ytmp3free.cc_nightcore-if-i-was-your-girlfriend-youtubemp3free.org",},
+        {
+            name:"Regalo",
+            img:"foto/3'1",
+            src:"song/ytmp3free.cc_alvaro-soler-regalo-official-visualizer-youtubemp3free.org",
+        },
+        {
+            name:"Shape Of You",
+            img:"foto/SKY_20251118_2238374404213845623118861",
+            src:"song/ytmp3free.cc_nightcore-shape-of-you-but-it-hits-different-lyrics-youtubemp3free.org (2)",
+        },
+    ];
+
+    // script for all
+    const wrapper = document.querySelector(".wrapper"),
+    musicImg = wrapper.querySelector(".img-area img"),
+    musicName = wrapper.querySelector(".song-details .name"),
+    musicAudio = wrapper.querySelector("#music-audio"),
+    playPauseBTN= wrapper.querySelector(".play-pause"),
+    prevBtn= wrapper.querySelector("#prev"),
+    nextBTN= wrapper.querySelector("#next"),
+    progressAREA= wrapper.querySelector(".progress-area"),
+    progressbar= wrapper.querySelector(".progress-bar"),
+    musicList= wrapper.querySelector(".music-list"),
+    showMoreBtn= wrapper.querySelector("#more-music"),
+    hideMusicBtn= musicList.querySelector("#close");
+
+    let musicIndex = 21;
+
+    window,addEventListener("load", ()=>{
+        loadMusic(musicIndex);
+    })
+
+    // load music fncition
+    function loadMusic(indexNumb){
+        musicName.innerText = allMusic[indexNumb - 1].name;
+        musicImg.src = `${allMusic[indexNumb - 1].img}.jpg`;
+        musicAudio.src = `${allMusic[indexNumb - 1].src}.mp3`;
+    }
+
+    // play and pause music funcition
+    function playMusic(){
+        wrapper.classList.add("paused");
+        playPauseBTN.querySelector("i").innerText = "pause";
+        musicAudio.play();
+    }
+
+    function pauseMusic(){
+        wrapper.classList.remove("paused");
+        playPauseBTN.querySelector("i").innerText = "play_arrow";
+        musicAudio.pause();
+    }
+
+    // next button
+    function nextMusic(){
+        // incriment of index by one
+        musicIndex++;
+        // untuk membuat perulangan lagu meskippun sudah mencapai batas akhir
+        musicIndex > allMusic.length ? musicIndex = 1 : musicIndex = musicIndex;
+                // untuk memuat lagu yang akan diputar
+        loadMusic(musicIndex);
+            // untuk langsung memulai lagu pada saat pergantiain lagu
+        playMusic();
+    }
+
+        // prev button
+    function prevMusic(){
+        // deccriment of index by one
+        musicIndex--;
+        // untuk membuat pennembalian lagu meskippun sudah mencapai batas akhir
+        musicIndex < 1 ? musicIndex = allMusic.length : musicIndex = musicIndex;
+                // untuk memuat lagu yang akan diputar
+        loadMusic(musicIndex);
+            // untuk langsung memulai lagu pada saat pergantiain lagu
+        playMusic();
+    }
+
+    // play or music button event
+    playPauseBTN.addEventListener("click", () =>{
+        const isMusicPaused = wrapper.classList.contains("paused");
+        isMusicPaused ? pauseMusic() : playMusic();
+    });
+
+    // next music btn
+    nextBTN.addEventListener("click", ()=>{
+        // calling next music funcition
+        nextMusic();
+    });
+
+     // prev music btn
+    prevBtn.addEventListener("click", ()=>{
+        // calling next music funcition
+        prevMusic();
+    });
+
+    musicAudio.addEventListener("timeupdate", (e)=>{
+        const currentTime = e.target.currentTime;
+        const duration = e.target.duration;
+        let progressWidth = (currentTime / duration) * 100;
+        progressbar.style.width= `${progressWidth}%`;
+
+        let musicCurrentTime = wrapper.querySelector(".current"),
+        musicDuration = wrapper.querySelector(".duration");
+
+    musicAudio.addEventListener("loadeddata", ()=>{
+    
+        //update song total duration
+        let audioDuration = musicAudio.duration;
+        let totalMin = Math.floor(audioDuration / 60 );
+        let totalSec = Math.floor(audioDuration % 60 );
+        if(totalSec < 10){ //if less than 10 sec 
+            totalSec = `0${totalSec}`;
+        }
+        musicDuration.innerText = `${totalMin} : ${totalSec}`;
+    });
+        
+       //current time
+        let currentMin = Math.floor(currentTime / 60 );
+        let currentSec = Math.floor(currentTime % 60 );
+        if(currentSec < 10){ //if less than 10 sec 
+            currentSec = `0${currentSec}`;
+        }
+        musicCurrentTime.innerText = `${currentMin} : ${currentSec}`;
+});
+
+//progress on bar width
+progressAREA.addEventListener("click", (e) =>{
+    let progressWidthval = progressAREA.clientWidth;//getting width
+    let clickedoffsetX= e.offsetX;//getting ofset x value
+    let songDuration = musicAudio.duration; //getting song total duration
+
+    musicAudio.currentTime = (clickedoffsetX / progressWidthval) * songDuration;
+    playMusic();//untuk memulai langsung musik pada saat bar diteekan
+});
+
+//repeat,shuffle song
+
+const repeatBtn = wrapper.querySelector("#repeat-pls");
+repeatBtn.addEventListener("click", ()=>{
+    let getText = repeatBtn.innerText; //getting innertext icon
+    // different change on different icon click
+    switch(getText){
+        case "repeat": //if this icon repeat
+        repeatBtn.innerText = "repeat_one"; 
+        repeatBtn.setAttribute("title", "song looped");
+        break;
+        case "repeat_one": //if this icon repeat one
+        repeatBtn.innerText = "shuffle"; 
+        repeatBtn.setAttribute("title", "playback shuffle");
+        break;
+        case "shuffle": //if this icon shuffle
+        repeatBtn.innerText = "repeat";
+        repeatBtn.setAttribute("title", "playlist looped");
+            break;
+    }
+});
+
+musicAudio.addEventListener("ended", ()=>{
+    let getText = repeatBtn.innerText;
+
+    switch(getText){
+        case "repeat": //untuk memutar lagu berikutnya
+        nextMusic();
+        break;
+        case "repeat_one": //iuntuk memutar satu lagu secara berulang
+        musicAudio.currentTime = 0;
+        loadMusic(musicIndex);
+        playMusic();
+        break;
+        case "shuffle": //untuk mengacak lagu yang akan diputar
+        let randIndex = Math.floor((Math.random() * allMusic.length) + 1);
+        do{
+            randIndex = Math.floor((Math.random() * allMusic.length) + 1);
+        }
+        while(musicIndex == randIndex);
+        musicIndex = randIndex;
+        loadMusic(musicIndex);
+        playMusic();
+            break;
+    }
+});
+
+//photo
+
+/*const filterItem = document.querySelector(".items");
+const filterImg = document.querySelectorAll(".image");
+
+window.onload = ()=>{
+    filterItem.onclick = (selecteditem)=>{
+        if(selectedItem.target.classList.contains("item")){
+            console.log(filterItem.querySelector(".active"));
+        }
+    }
+}
+
+
+//selecting all element image
+const previewBox = document.querySelector(".preview-box"),
+previewImg = previewBox.querySelector("img"),
+closeIcon = previewBox.querySelector(".material-symbols-outlined2")
+    
+
+//fullscreen fuuncition
+function preview(element){
+    previewBox.classList.add("show");
+}*/
+
+new Swiper('.swiper', {
+  // Optional parameters
+    loop: true,
+
+  // If we need pagination
+    pagination: {
+        el: '.swiper-pagination',
+    },
+
+  // Navigation arrows
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+
+});
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    </body>
+</html>
+
+    </div>
+</body>
+</html>
